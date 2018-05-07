@@ -39,4 +39,25 @@ describe MoviesController do
     # end
   end
 
+  describe "show" do
+    it "is a working route that recieves one movie" do
+      get movie_path( movies(:harry).id )
+      must_respond_with :success
+    end
+
+    it "returns one movie with required data" do
+      keys = %w(inventory overview release_date title)
+      get movie_path( movies(:harry).id )
+      body = JSON.parse(response.body)
+      body.keys.sort.must_equal keys
+    end
+
+    it "returns a 404 code for movies that do not exist" do
+      movie = movies(:harry)
+      movie.destroy
+      get movie_path(movie.id)
+      must_respond_with :bad_request
+    end
+  end
+
 end
