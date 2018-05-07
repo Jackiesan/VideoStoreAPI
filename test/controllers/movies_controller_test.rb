@@ -78,7 +78,7 @@ describe MoviesController do
 
     it "creates a new movie" do
       proc {
-        post movies_url, params: { movie: new_movie }
+        post movies_url, params: new_movie
       }.must_change 'Movie.count', 1
       must_respond_with :success
 
@@ -92,7 +92,7 @@ describe MoviesController do
       keys.each do |key|
         new_movie[key] = nil
         proc {
-          post movies_url, params: { movie: new_movie }
+          post movies_url, params: new_movie
         }.must_change 'Movie.count', 0
         must_respond_with :bad_request
         body = JSON.parse(response.body)
