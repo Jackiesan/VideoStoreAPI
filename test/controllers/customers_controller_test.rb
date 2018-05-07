@@ -33,5 +33,17 @@ describe CustomersController do
         customer.keys.sort.must_equal keys
       end
     end
+
+    it "returns empty array if there are no customers" do
+      all_customers = Customer.all
+      all_customers.each do |customer|
+        customer.destroy
+      end
+      get customers_url
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Array
+      body.must_equal []
+    end
+
   end
 end
