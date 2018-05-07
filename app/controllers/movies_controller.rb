@@ -17,10 +17,16 @@ class MoviesController < ApplicationController
     end
   end
 
-  def new
-  end
+  # def new
+  # end
 
   def create
+    movie = Movie.create(movies_params)
+    if movie.valid?
+      render json: { id: movie.id }, status: :ok
+    else
+      render json: { errors: movie.errors }, status: :bad_request
+    end
   end
 
   def destroy
@@ -30,5 +36,10 @@ class MoviesController < ApplicationController
   end
 
   def update
+  end
+
+  private
+  def movies_params
+    return params.require(:movie).permit(:title, :overview, :release_date, :inventory)
   end
 end
