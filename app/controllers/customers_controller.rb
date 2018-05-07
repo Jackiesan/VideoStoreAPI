@@ -1,11 +1,7 @@
 class CustomersController < ApplicationController
   def index
-  end
-
-  def show
-  end
-
-  def new
+    customers = Customer.all
+    render json: customers.as_json( only: [:id, :name, :registered_at, :postal_code, :phone, :movies_checked_out_count])
   end
 
   def create
