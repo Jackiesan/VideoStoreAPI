@@ -4,8 +4,11 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+tommy:
+  name: Tommy Pickles
+  registered_at: Wed, 29 Apr 2015 07:54:14 -0700
+  address: 45 Walnut St
+  city: Toledo
+  state: Ohio
+  postal_code: 49333
+  phone: 983-323-3343
