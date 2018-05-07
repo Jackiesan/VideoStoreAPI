@@ -1,39 +1,42 @@
 require "test_helper"
 
 describe MoviesController do
-  it "should get index" do
-    get movies_index_url
-    value(response).must_be :success?
-  end
+  describe "index" do
+    it "is a real working route" do
+      get movies_url
+      must_respond_with :success
+    end
 
-  it "should get show" do
-    get movies_show_url
-    value(response).must_be :success?
-  end
+    it "returns json" do
+      get movies_url
+      response.header['Content-Type'].must_include 'json'
+    end
 
-  it "should get new" do
-    get movies_new_url
-    value(response).must_be :success?
-  end
+    it "returns an Array" do
+      get movies_url
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Array
+    end
 
-  it "should get create" do
-    get movies_create_url
-    value(response).must_be :success?
-  end
+    it "returns all of the movies" do
+      get movies_url
+      body = JSON.parse(response.body)
+      body.length.must_equal Movie.count
+    end
 
-  it "should get destroy" do
-    get movies_destroy_url
-    value(response).must_be :success?
-  end
+    it "returns movies with exactly the required fields" do
+      keys = %w(id release_date title)
+      get movies_url
+      body = JSON.parse(response.body)
+      body.each do |movie|
+        movie.keys.sort.must_equal keys
+      end
+    end
 
-  it "should get edit" do
-    get movies_edit_url
-    value(response).must_be :success?
-  end
-
-  it "should get update" do
-    get movies_update_url
-    value(response).must_be :success?
+    # NOTE: is this a good test?
+    # it "returns empty array if there are no movies" do
+    #
+    # end
   end
 
 end
