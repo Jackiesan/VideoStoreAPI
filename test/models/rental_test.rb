@@ -3,7 +3,7 @@ require "test_helper"
 describe Rental do
 
   let(:rental) { rentals(:one) }
-  descrbe "intialization" do
+  describe "intialization" do
     it "must be valid" do
       value(rental).must_be :valid?
     end
