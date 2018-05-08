@@ -32,7 +32,8 @@ describe Movie do
 
   describe "relations" do
     it "responds to rentals" do
-
+      harry_potter.must_respond_to :rentals
     end
   end
+  
 end
