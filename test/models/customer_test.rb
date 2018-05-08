@@ -49,4 +49,10 @@ describe Customer do
     customer.errors.messages.must_include :phone
   end
 
+  describe 'relations' do
+    it "must respond to rentals" do
+      customer.must_respond_to :rentals
+    end
+  end
+
 end
