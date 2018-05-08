@@ -9,7 +9,6 @@ class RentalsController < ApplicationController
       rental.update(check_in_status: true)
       render json: { status: 'Success', rental: rental }, status: :ok
     else
-      # rental.errors.add( :rental, "test" )
       render json: { errors: 'Rental does not exist' }, status: :bad_request
     end
 
@@ -34,4 +33,8 @@ class RentalsController < ApplicationController
     return params.permit(:movie_id, :customer_id)
   end
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> df481494e3a9b2f543d289b24f927ab16d8cb15f
 end
