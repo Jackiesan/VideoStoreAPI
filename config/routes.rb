@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'rentals/check_in'
+
+  get 'rentals/check_out'
+
   get '/zomg', to: 'movies#test', as: 'test'
   resources :movies
   resources :customers
