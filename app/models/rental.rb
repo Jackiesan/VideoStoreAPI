@@ -4,8 +4,14 @@ class Rental < ApplicationRecord
   validates :checked_out, presence: true
   validates :due_date, presence: true
   validates :check_in_status,  inclusion: { in: [ true, false ] }
+  validate :rental_available
 
-  def self.get_due_date
-    return self.check_out + 7
+  def rental_available
+    units_checked_out = movie.rentals.select { |rental| rental.check_in_status == false }
+    units_available = movie.inventory - units_checked_out.count
+    if units_available == 0
+      errors.add(:movie, "This movie is not available")
+    end
   end
+
 end
