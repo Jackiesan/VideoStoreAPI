@@ -1,10 +1,17 @@
 require "test_helper"
 
 describe Rental do
+
   let(:rental) { rentals(:one) }
 
-  it "must be valid" do
-    value(rental).must_be :valid?
+  describe "relations" do
+    it "responds to movies" do
+      my_rental.must_respond_to :movie
+    end
+
+    it "responds to customers" do
+      my_rental.must_respond_to :customer
+    end
   end
 
   it "must not be valid without a movie" do
