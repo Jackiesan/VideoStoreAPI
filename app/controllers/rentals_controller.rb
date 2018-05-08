@@ -9,7 +9,6 @@ class RentalsController < ApplicationController
       rental.update(check_in_status: true)
       render json: { status: 'Success', rental: rental }, status: :ok
     else
-      # rental.errors.add( :rental, "test" )
       render json: { errors: 'Rental does not exist' }, status: :bad_request
     end
 
