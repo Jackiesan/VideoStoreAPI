@@ -9,9 +9,11 @@ one:
   due_date: 2012-05-07
   movie: harry
   customer: tommy
+  check_in_status: true
 
 two:
   checked_out: 2012-05-01
   due_date: 2012-05-07
   movie: avengers
   customer: tommy
+  check_in_status: true
