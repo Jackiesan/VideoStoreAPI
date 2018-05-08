@@ -9,7 +9,7 @@ one:
   due_date: 2012-05-07
   movie: harry
   customer: tommy
-  check_in_status: true
+  check_in_status: false
 
 two:
   checked_out: 2012-05-01
