@@ -29,4 +29,10 @@ describe Movie do
       harry_potter.valid?.must_equal false
     end
   end
+
+  describe "relations" do
+    it "responds to rentals" do
+
+    end
+  end
 end
