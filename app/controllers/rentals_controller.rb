@@ -34,11 +34,4 @@ class RentalsController < ApplicationController
     return params.permit(:movie_id, :customer_id)
   end
 
-<<<<<<< HEAD
-=======
-  private
-  def rental_params
-    return params.permit(:customer_id, :movie_id)
-  end
->>>>>>> 30727d3a7b4ebfd6f231d2b0f85b4018eb90e5d4
 end
