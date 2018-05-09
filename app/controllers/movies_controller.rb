@@ -17,9 +17,6 @@ class MoviesController < ApplicationController
     end
   end
 
-  # def new
-  # end
-
   def create
     movie = Movie.create(movies_params)
     if movie.valid?
@@ -27,15 +24,6 @@ class MoviesController < ApplicationController
     else
       render json: { errors: movie.errors }, status: :bad_request
     end
-  end
-
-  def destroy
-  end
-
-  def edit
-  end
-
-  def update
   end
 
   private

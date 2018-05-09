@@ -7,4 +7,12 @@ class Customer < ApplicationRecord
   validates :state, presence: true
   validates :postal_code, presence: true
   validates :phone, presence: true
+
+  def get_count(customer_id)
+    customer = Customer.find(customer_id)
+
+    items_checked_out = customer.rentals.select { |rental| rental.check_in_status == true }
+
+    return items_checked_out.count
+  end
 end

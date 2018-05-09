@@ -1,18 +1,14 @@
 class CustomersController < ApplicationController
   def index
-    customers = Customer.all
-    render json: customers.as_json( only: [:id, :name, :registered_at, :postal_code, :phone, :movies_checked_out_count])
+    @customers = Customer.all
+    @customers_data = []
+    @customers.each do |customer|
+      movies_checked_out_count = {"movies_checked_out_count" => customer.get_count(customer.id) }
+      customer = JSON::parse(customer.to_json(only: [:id, :name, :registered_at, :postal_code, :phone])).merge(movies_checked_out_count)
+      @customers_data << customer
+    end
+
+    render json: @customers_data.as_json
   end
 
-  def create
-  end
-
-  def destroy
-  end
-
-  def edit
-  end
-
-  def update
-  end
 end
