@@ -6,7 +6,6 @@ describe RentalsController do
     let(:rental) { rentals(:one) }
 
     it "checks in a valid rental" do
-
       post check_in_path, params: {
         customer_id: rental.customer.id,
         movie_id: rental.movie.id

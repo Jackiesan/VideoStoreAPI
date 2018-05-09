@@ -3,7 +3,6 @@ require 'date'
 class RentalsController < ApplicationController
 
   def check_in
-
     rental = Rental.find_by(customer_id: rental_params[:customer_id], movie_id: rental_params[:movie_id], check_in_status: false)
     if rental
       rental.update(check_in_status: true)
@@ -11,7 +10,6 @@ class RentalsController < ApplicationController
     else
       render json: { errors: 'Rental does not exist' }, status: :bad_request
     end
-
   end
 
   def check_out
