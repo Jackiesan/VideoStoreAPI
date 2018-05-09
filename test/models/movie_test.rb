@@ -35,5 +35,13 @@ describe Movie do
       harry_potter.must_respond_to :rentals
     end
   end
-  
+
+  describe "custom methods" do
+    it "returns an available_inventory successfully" do
+      # save initial inventory
+      # checkin a rental a couple of times
+      # check that the available_inventory = inventory - rentals currently out
+    end
+  end
+
 end
