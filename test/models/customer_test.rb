@@ -2,6 +2,7 @@ require "test_helper"
 
 describe Customer do
   let(:customer) { customers(:tommy) }
+  let(:dee) { customers(:dee) }
 
   it "must be valid with all attributes included" do
     value(customer).must_be :valid?
@@ -57,8 +58,13 @@ describe Customer do
 
   describe 'get_count method' do
     it "returns the number of movies checked_out by a specific customer" do
-      movies_checked_out_count = customer.get_count(customer.id)
+      movies_checked_out_count = customer.get_count
       movies_checked_out_count.must_equal 1
+    end
+
+    it "return zero if the customer does not have any movies checked out" do
+      movies_checked_out_count = dee.get_count
+      movies_checked_out_count.must_equal 0
     end
   end
 
