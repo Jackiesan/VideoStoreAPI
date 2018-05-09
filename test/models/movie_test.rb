@@ -37,11 +37,16 @@ describe Movie do
   end
 
   describe "custom methods" do
-    it "returns an integer" do
+    it "returns an integer equal to inventory when there are no rentals" do
       no_rentals = movies(:lego)
       no_rentals.available_inventory.must_be_kind_of Integer
       # no_rentals.available_inventory.must_equal no_rentals.inventory
     end
+
+    # it "returns zero if there are no more available movies" do
+    #   all_rented = movies(:harry)
+    #   all_rented.available_inventory.must_equal 0
+    # end
   end
 
 end
