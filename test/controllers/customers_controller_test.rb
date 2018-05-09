@@ -45,5 +45,13 @@ describe CustomersController do
       body.must_equal []
     end
 
+    it "returns movies checked out count as an integer" do
+      get customers_url
+      body = JSON.parse(response.body)
+      body.each do |customer|
+        customer["movies_checked_out_count"].must_be_kind_of Integer
+      end
+    end
+
   end
 end

@@ -55,4 +55,11 @@ describe Customer do
     end
   end
 
+  describe 'get_count method' do
+    it "returns the number of movies checked_out by a specific customer" do
+      movies_checked_out_count = customer.get_count(customer.id)
+      movies_checked_out_count.must_equal 1
+    end
+  end
+
 end
