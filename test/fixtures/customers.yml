@@ -12,3 +12,12 @@ tommy:
   state: Ohio
   postal_code: 49333
   phone: 983-323-3343
+
+chucky:
+  name: Chucky
+  registered_at: Wed, 1 Mar 2017 09:54:00 -0700
+  address: 45 Walnut St
+  city: Toledo
+  state: Ohio
+  postal_code: 49333
+  phone: 983-323-2222

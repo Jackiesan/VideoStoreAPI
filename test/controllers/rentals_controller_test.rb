@@ -44,6 +44,16 @@ describe RentalsController do
       body.must_include "errors"
       body["errors"].must_include "movie"
     end
+
+    it "updates available_inventory successfully" do
+      initial_inventory = movies(:lego).available_inventory
+      post check_out_path, params: {
+        customer_id: customer.id,
+        movie_id: movies(:lego).id
+      }
+      updated_inventory = movies(:lego).available_inventory
+      updated_inventory.must_equal initial_inventory - 1
+    end
   end
 
   describe "check_in" do
@@ -54,7 +64,6 @@ describe RentalsController do
         customer_id: rental.customer.id,
         movie_id: rental.movie.id
       }
-      # rental.check_in_status.must_equal true
       body = JSON.parse(response.body)
       body["rental"]["check_in_status"].must_equal true
       must_respond_with :success
@@ -77,5 +86,20 @@ describe RentalsController do
       }
       must_respond_with :bad_request
     end
+
+    it "updates available_inventory successfully" do
+      initial_inventory = movies(:lego).available_inventory
+      post check_out_path, params: {
+        customer_id: customer.id,
+        movie_id: movies(:lego).id
+      }
+      post check_in_path, params: {
+        customer_id: customer.id,
+        movie_id: movies(:lego).id
+      }
+      updated_inventory = movies(:lego).available_inventory
+      updated_inventory.must_equal initial_inventory
+    end
+
   end
 end

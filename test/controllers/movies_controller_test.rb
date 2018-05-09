@@ -52,7 +52,7 @@ describe MoviesController do
     end
 
     it "returns one movie with required data" do
-      keys = %w(inventory overview release_date title)
+      keys = %w(available_inventory inventory overview release_date title)
       get movie_path( movies(:harry).id )
       body = JSON.parse(response.body)
       body.keys.sort.must_equal keys
