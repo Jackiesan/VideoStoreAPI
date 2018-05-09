@@ -11,8 +11,12 @@ class Customer < ApplicationRecord
   def get_count(customer_id)
     customer = Customer.find(customer_id)
 
-    items_checked_out = customer.rentals.select { |rental| rental.check_in_status == true }
+    items_checked_out = customer.rentals.select { |rental| rental.check_in_status == false }
 
-    return items_checked_out.count
+    if !items_checked_out.empty?
+      return items_checked_out.count
+    else
+      return 0
+    end
   end
 end
