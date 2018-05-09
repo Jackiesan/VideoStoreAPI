@@ -8,6 +8,8 @@ class Rental < ApplicationRecord
 
 
   def rental_available
+    return unless errors.blank?
+
     units_checked_out = movie.rentals.select { |rental| rental.check_in_status == false }
     units_available = movie.inventory - units_checked_out.count
     if units_available == 0

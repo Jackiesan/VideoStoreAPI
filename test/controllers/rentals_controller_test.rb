@@ -1,6 +1,50 @@
 require "test_helper"
 
 describe RentalsController do
+  let(:customer) { customers(:tommy)}
+  let(:movie) { movies(:harry)}
+  describe "check_out" do
+    let(:rental_data) {
+      {
+        movie_id: movie.id,
+        customer_id: customer.id
+      }
+    }
+
+    it "creates a new rental" do
+      proc {
+        post check_out_path, params: rental_data
+      }.must_change 'Rental.count', 1
+
+      must_respond_with :success
+    end
+
+    it "returns bad request for bad customer params data" do
+      rental_data.delete(:customer_id)
+      proc {
+        post check_out_path, params: rental_data
+      }.must_change 'Rental.count', 0
+
+      must_respond_with :bad_request
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "customer"
+    end
+
+    it "returns bad request for bad movie params data" do
+      rental_data.delete(:movie_id)
+      proc {
+        post check_out_path, params: rental_data
+      }.must_change 'Rental.count', 0
+
+      must_respond_with :bad_request
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Hash
+      body.must_include "errors"
+      body["errors"].must_include "movie"
+    end
+  end
 
   describe "check_in" do
     let(:rental) { rentals(:one) }
@@ -34,5 +78,4 @@ describe RentalsController do
       must_respond_with :bad_request
     end
   end
-
 end

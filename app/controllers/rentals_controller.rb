@@ -31,5 +31,4 @@ class RentalsController < ApplicationController
     return params.permit(:movie_id, :customer_id)
   end
 
-
 end
