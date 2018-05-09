@@ -8,10 +8,8 @@ class Customer < ApplicationRecord
   validates :postal_code, presence: true
   validates :phone, presence: true
 
-  def get_count(customer_id)
-    customer = Customer.find(customer_id)
-
-    items_checked_out = customer.rentals.select { |rental| rental.check_in_status == false }
+  def get_count
+    items_checked_out = self.rentals.select { |rental| rental.check_in_status == false }
 
     if !items_checked_out.empty?
       return items_checked_out.count
