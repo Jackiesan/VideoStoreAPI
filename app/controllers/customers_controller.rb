@@ -11,4 +11,6 @@ class CustomersController < ApplicationController
     render json: @customers_data.as_json
   end
 
+  #comment
+
 end
